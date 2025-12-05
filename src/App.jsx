@@ -6,12 +6,16 @@ import AddCard from './pages/AddCard'
 import { NotFound } from './pages/NotFound'
 import AddTopic from './pages/AddTopic'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { ToastContainer } from 'react-toastify'
+import { MyToastify } from './components/MyToastify'
 
 function App() {
 
 
   return (
     <>
+           <MyToastify />
+       <ToastContainer />
       <Routes>
         <Route path='/' element={<Home/>}></Route>
         <Route path='/topic' element={<Topic/>}></Route>

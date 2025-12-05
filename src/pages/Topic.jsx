@@ -3,9 +3,10 @@ import { MyUserContext } from '../context/MyUserProvider';
 import { useNavigate } from 'react-router';
 import { readCardsOnce } from '../myBackend';
 import HomeButton from '../components/HomeButton';
+import MyModal from '../components/MyModal';
 
 const Topic = () => {
-
+    const [open, setOpen] = React.useState(false);
     const { valasztottTopic } = useContext(MyUserContext);
     const navigate = useNavigate();
     const [topics, setTopics] = useState([]);
@@ -21,7 +22,10 @@ const Topic = () => {
 
             <div className="topic-header">
                 <h1>{valasztottTopic.name}</h1>
-                <button className="new-card-btn" onClick={() => navigate("/addcard")}>
+                <button className="new-card-btn" onClick={
+                    // () => navigate("/addcard")
+                    ()=>setOpen(true)
+                    }>
                     Új kártya
                 </button>
             </div>
@@ -33,7 +37,9 @@ const Topic = () => {
                     )
                 }
             </div>
+                        <MyModal open={open} setOpen={setOpen}/>
         </div>
+        
     );
 };
 

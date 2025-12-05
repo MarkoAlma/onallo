@@ -4,8 +4,14 @@ import { useNavigate } from 'react-router';
 import { MyUserContext } from '../context/MyUserProvider';
 import { Button, Spinner, Card, CardBody } from 'reactstrap';
 import { FaPlus} from "react-icons/fa";
+import MyModal from '../components/MyModal';
+import { MyAuthContext } from '../context/AuthContext';
 
 const Home = () => {
+
+    const [open, setOpen] = React.useState(false);
+
+    const {hasAccess} = useContext(MyAuthContext)
 
     const [topics, setTopics] = useState([]);
     const [isLoading, setLoading] = useState(true);
@@ -23,18 +29,23 @@ const Home = () => {
     };
 
     return (
-        <div className="home-container">
-
+        <div className="home-container">      
             <div className="header-row">
                 <h1 className="main-title"> Témakörök</h1>
                 <Button 
                     color="primary" 
                     className="add-btn"
-                    onClick={() => navigate("/addtopic")}
+                    onClick={
+                        // () => navigate("/addtopic"),
+                      ()=>{
+                        hasAccess ? navigate("/addtopic") : setOpen(true)
+                      }
+                    }
                 >
                     <FaPlus /> Új témakör
                 </Button>
             </div>
+            <MyModal open={open} setOpen={setOpen}/>
 
             {isLoading ? (
                 <div className="loading-box">
