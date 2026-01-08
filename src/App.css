@@ -184,7 +184,7 @@
 /* Flip card container */
 .flip-card {
     perspective: 1000px;
-    height: 200px;
+    height: 320px;
     cursor: pointer;
 }
 
@@ -220,6 +220,8 @@
     backdrop-filter: blur(10px);
     box-shadow: 0 8px 20px rgba(0,0,0,0.35);
     word-break: break-word;
+    overflow-y: auto;
+      align-items: flex-start;   /* 🔥 EZ A KULCS */
 }
 
 /* Front = Question */
@@ -227,6 +229,7 @@
     margin: 0;
     font-size: 1.15rem;
     font-weight: 600;
+      margin: auto;    
 }
 
 /* Back = Answer */
@@ -239,6 +242,7 @@
     font-weight: 700;
     font-size: 1.15rem;
     margin: 0;
+      margin: auto;    
 }
 
 .addcard-container {
@@ -501,6 +505,9 @@ h1 {
         top: 5px;
         left: 5px;
     }
+    .header-row {
+        flex-direction: column;
+    }
 }
 
 .glass-btnk{
@@ -548,4 +555,21 @@ h1 {
 
 .felso {
     margin-top: -15px !important;
+}
+
+.actions {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.actions.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media screen and (max-width: 350px) {
+    [type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+        font-size: 12.8px;
+    }
 }

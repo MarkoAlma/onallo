@@ -151,8 +151,13 @@ const FlipCard = ({topicId, obj, hasAccess}) => {
                     <h3>{obj.answer}</h3>
                 </div>
 
-                {hasAccess && !flipped && (<> <div className='glass-btnk balos' style={{cursor:'pointer'}} onClick={(e)=>kartyaTorles(e, obj.id)}><FaRegTrashAlt height={"0.8em"} width={"0.8em"}/></div>
-                      <div className='glass-btnk jobbos' style={{cursor:'pointer'}} onClick={(e)=>kartyaModositas(e, obj)} ><CiEdit    /></div></>)}
+                <div className={`actions ${hasAccess && !flipped ? "visible" : "hidden"}`}>
+                    <div className='glass-btnk balos' style={{cursor:'pointer'}} onClick={(e)=>kartyaTorles(e, obj.id)}><FaRegTrashAlt height={"0.8em"} width={"0.8em"}/></div>
+                      <div className='glass-btnk jobbos' style={{cursor:'pointer'}} onClick={(e)=>kartyaModositas(e, obj)} ><CiEdit    /></div>
+                </div>
+                
+                {/* {hasAccess && !flipped && (<> <div className='glass-btnk balos' style={{cursor:'pointer'}} onClick={(e)=>kartyaTorles(e, obj.id)}><FaRegTrashAlt height={"0.8em"} width={"0.8em"}/></div>
+                      <div className='glass-btnk jobbos' style={{cursor:'pointer'}} onClick={(e)=>kartyaModositas(e, obj)} ><CiEdit    /></div></>)} */}
 
             </div>
         </div>

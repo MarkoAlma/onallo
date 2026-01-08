@@ -26,7 +26,6 @@ useEffect(()=>{
             setLoading(false)
         }
     }
-    console.log("LAMLMDKHBWFRKI");
     
     checkAuth()
 },[])

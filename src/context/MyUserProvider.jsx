@@ -14,7 +14,11 @@ const MyUserProvider = ({ children }) => {
     return saved ? JSON.parse(saved) : null;
   });
 
-  const [valasztottKartya, setValasztottKartya] = useState({})
+  const [valasztottKartya, setValasztottKartya] = useState(() => {
+    const saved = localStorage.getItem("valasztottKartya");
+    return saved ? JSON.parse(saved) : null;
+  });
+
 
   // Token mentése localStorage-be
   useEffect(() => {
@@ -33,6 +37,14 @@ const MyUserProvider = ({ children }) => {
       localStorage.removeItem("valasztottTopic");
     }
   }, [valasztottTopic]);
+
+  useEffect(() => {
+    if (valasztottKartya) {
+      localStorage.setItem("valasztottKartya", JSON.stringify(valasztottKartya));
+    } else {
+      localStorage.removeItem("valasztottKartya");
+    }
+  }, [valasztottKartya]);
 
   return (
     <MyUserContext.Provider 
